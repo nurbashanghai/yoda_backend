@@ -38,13 +38,14 @@ class UserController {
             if(user === null){
                 res.send('null')
             } else {
-                res.send(user)
+                res.send({user, access_token})
             }
         
     }
 
     async login(req, res, next) {
-        const {email, password} = req.body
+        console.log(req.body)
+        const {email, password} = req.body.data
         const user = await User.findOne({where: {email}})
         if (!user) {
             return next(ApiError.internal('Пользователь не найден'))
@@ -53,8 +54,8 @@ class UserController {
         if (!comparePassword) {
             return next(ApiError.internal('Указан неверный пароль'))
         }
-        const token = generateJwt(user.id, user.email, user.role)
-        return res.json({token})
+        const access_token = generateJwt(user.id, user.email, user.role)
+        return res.json({user , access_token})
     }
 
     async check(req, res, next) {

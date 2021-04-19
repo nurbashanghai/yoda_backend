@@ -3,7 +3,7 @@ const path = require('path');
 const {Device, DeviceInfo} = require('../models/models')
 const ApiError = require('../error/ApiError');
 
-class DeviceController { // контроллер
+class DeviceController { 
     async create(req, res, next) {
         try {
             let {name, price, brandId, typeId, info} = req.body
@@ -30,7 +30,7 @@ class DeviceController { // контроллер
 
     }
 
-    async getAll(req, res) { // получение всех девайсов
+    async getAll(req, res) { 
         let {brandId, typeId, limit, page} = req.query
         page = page || 1
         limit = limit || 9

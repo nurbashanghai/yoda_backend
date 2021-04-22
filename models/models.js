@@ -5,7 +5,11 @@ const User = sequelize.define('user', {
     id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
     email: {type: DataTypes.STRING, unique: true,},
     password: {type: DataTypes.STRING},
-    role: {type: DataTypes.STRING, defaultValue: "USER"}
+    role: {type: DataTypes.STRING, defaultValue: "USER"},
+    interests: {type: DataTypes.ARRAY(DataTypes.STRING), defaultValue: []},
+    birhtday: {type: DataTypes.STRING, defaultValue: "Define birthday"},
+    name: {type: DataTypes.STRING},
+    lastName: {type: DataTypes.STRING}
 })
 
 // const Basket = sequelize.define('basket', {
